@@ -1,43 +1,11 @@
-import {
-    BigQuery,
-} from "@google-cloud/bigquery"
-import {TableType} from "./types";
+#!/usr/bin/env node
+
 import _ from "lodash"
 import os from "os";
 import * as fs from "fs"
-
-async function getTablesInfo(datasetId: string): Promise<TableType[]> {
-    const bigquery = new BigQuery()
-    const dataset = bigquery.dataset(datasetId)
-    if (!dataset) {
-        throw new Error(`Cannot find dataset with id '${datasetId}'`)
-    }
-
-    const tablesObj: TableType[] = []
-    const tablesResponse = await dataset.getTables()
-    const tables = tablesResponse[0]
-
-    for (let i = 0; i < tables.length; i++) {
-        const table = tables[i].id
-        if (!table) {
-            throw new Error("table should have an id")
-        } else {
-            const fields: string[] = []
-            const tableObj = {table: table, fields}
-            tablesObj.push(tableObj)
-            const metadataResponse = await tables[i].getMetadata()
-            metadataResponse[0].schema.fields.map((e: { name: string; }) => fields.push(e.name))
-            if (i === tables.length - 1) {
-                // Last table
-                console.log(tablesObj)
-            }
-        }
-    }
-    return tablesObj
-}
-
-// TODO should be a param
-const datasetId = "optiprix"
+import {BigQueryClient} from "./bigquery";
+import 'dotenv/config'
+import {TableType} from "./types";
 
 function indent(s: string): string {
     for (let i = 0; i < 4; i++) {
@@ -50,7 +18,17 @@ function capitalizeFirstLetter(s: string): string {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-getTablesInfo(datasetId).then(tableTypes => {
+function getTablesInfo(): () => Promise<TableType[]> {
+    if (process.env.SQUASHQL_CLIENT === "bigquery") {
+        return () => new BigQueryClient().getTablesInfo({
+            datasetId: process.env.SQUASHQL_DATASET_ID
+        })
+    } else {
+        throw new Error("Please define a environment variable SQUASHQL_CLIENT with one of this value: [bigquery]")
+    }
+}
+
+getTablesInfo()().then(tableTypes => {
     let s = "import {TableField} from \"@squashql/squashql-js\"" + os.EOL + os.EOL
     const tableNamesCC: string[] = []
     tableTypes.forEach(tableType => {
@@ -59,7 +37,7 @@ getTablesInfo(datasetId).then(tableTypes => {
         s += "class " + capitalizeFirstLetter(cc) + " {" + os.EOL
         s = indent(s)
         s += `readonly _name: string = "${tableType.table}"` + os.EOL
-        tableType.fields.forEach((field, index) => {
+        tableType.fields.forEach((field) => {
             s = indent(s)
             s += "readonly " + _.camelCase(field) + `: TableField = new TableField(\"${tableType.table}.${field}\")`
             s += os.EOL
