@@ -7,12 +7,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./build && tsc"
   },
+  "bin": {
+    "squashql-codegen": "./index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.196",
     "@types/node": "^20.4.5",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.0.0",
+    "lodash": "^4.17.21"
   }
 }
