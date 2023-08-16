@@ -5,6 +5,33 @@ This tool is inspired by [Kysely Codegen](https://github.com/RobinBlomberg/kysel
 squashql-codegen generates type definitions that represent tables from your database in ts file named `tables.ts`. The
 types can be used with the [TypeScript library](https://www.npmjs.com/package/@squashql/squashql-js) to build SQL-like queries compatible with SquashQL.
 
+Example:
+
+```typescript
+import {TableField} from "@squashql/squashql-js"
+
+class Product {
+    readonly _name: string = "product"
+    readonly productId: TableField = new TableField("product.product_id")
+    readonly price: TableField = new TableField("product.price")
+    readonly brand: TableField = new TableField("product.brand")
+    readonly categoryId: TableField = new TableField("product.category_id")
+}
+
+class Category {
+    readonly _name: string = "category"
+    readonly categoryId: TableField = new TableField("category.category_id")
+    readonly status: TableField = new TableField("category.status")
+}
+
+const product = new product()
+const category = new Category()
+
+export {
+    product, category
+}
+```
+
 ## Installation & Execution
 
 To install the CLI globally
