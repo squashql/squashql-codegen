@@ -32,12 +32,14 @@ export {
 }
 ```
 
-And then you can use it for your calculations that need to use the `Field` interface. [See the documentation](https://github.com/squashql/squashql/blob/main/documentation/QUERY.md#fields).
+And then you can use it for your calculations that need to use the `Field` interface or the constant . [See the documentation](https://github.com/squashql/squashql/blob/main/documentation/QUERY.md#fields).
 ```typescript
 import {product, category} from "./table"
 
-const price = product.price
-const status = category.status
+const price: TableField = product.price
+const status: TableField = category.status
+
+const priceName: string = price.name // name of the field is accessible
 // ...
 ```
 
