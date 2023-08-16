@@ -24,12 +24,21 @@ class Category {
     readonly status: TableField = new TableField("category.status")
 }
 
-const product = new product()
+const product = new Product()
 const category = new Category()
 
 export {
     product, category
 }
+```
+
+And then you can use it for your calculations that need to use the `Field` interface. [See the documentation](https://github.com/squashql/squashql/blob/main/documentation/QUERY.md#fields).
+```typescript
+import {product, category} from "./table"
+
+const price = product.price
+const status = category.status
+// ...
 ```
 
 ## Installation & Execution
