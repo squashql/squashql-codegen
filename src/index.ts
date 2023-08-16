@@ -19,12 +19,13 @@ function capitalizeFirstLetter(s: string): string {
 }
 
 function getTablesInfo(): () => Promise<TableType[]> {
-    if (process.env.SQUASHQL_CLIENT === "bigquery") {
+    const bigquery = "bigquery";
+    if (process.env.SQUASHQL_CLIENT === bigquery) {
         return () => new BigQueryClient().getTablesInfo({
-            datasetId: process.env.SQUASHQL_DATASET_ID
+            datasetId: process.env.SQUASHQL_BIGQUERY_DATASET_ID
         })
     } else {
-        throw new Error("Please define a environment variable SQUASHQL_CLIENT with one of this value: [bigquery]")
+        throw new Error(`Please define a environment variable SQUASHQL_CLIENT with one of this value: [${bigquery}]`)
     }
 }
 

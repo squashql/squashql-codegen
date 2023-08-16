@@ -3,8 +3,7 @@
 This tool is inspired by [Kysely Codegen](https://github.com/RobinBlomberg/kysely-codegen)
 
 squashql-codegen generates type definitions that represent tables from your database in ts file named `tables.ts`. The
-types can be used with the [TypeScript library](https://www.npmjs.com/package/@squashql/squashql-js) to build SQL-like
-queries compatible with SquashQL.
+types can be used with the [TypeScript library](https://www.npmjs.com/package/@squashql/squashql-js) to build SQL-like queries compatible with SquashQL.
 
 ## Installation & Execution
 
@@ -35,10 +34,14 @@ The CLI uses [Application Default Credentials to authenticate](https://cloud.goo
 ```
 # .env file
 SQUASHQL_CLIENT="bigquery" # mandatory
-SQUASHQL_DATASET_ID="nameofthedataset" # mandatory
+SQUASHQL_BIGQUERY_DATASET_ID="nameofthedataset" # mandatory
 GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json # mandatory if this authentication method is used https://cloud.google.com/docs/authentication/application-default-credentials#GAC
 ```
 
-## DuckDB
+## Snowflake
+
+TODO
+
+## Clickhouse
 
 TODO
