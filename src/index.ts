@@ -7,6 +7,7 @@ import {BigQueryClient} from "./bigquery";
 import 'dotenv/config'
 import {TableType} from "./types";
 import {SnowflakeClient} from "./snowflake";
+import path from "path";
 
 function indent(s: string): string {
     for (let i = 0; i < 4; i++) {
@@ -77,5 +78,11 @@ getTablesInfo()().then(tableTypes => {
     s += "}"
     s += os.EOL
 
-    fs.writeFileSync('tables.ts', s)
+
+    let file = 'tables.ts';
+    if (process.env.SQUASHQL_PATH) {
+        file = path.resolve(process.env.SQUASHQL_PATH, file);
+    }
+    fs.writeFileSync(file, s)
+    console.log("Table type definitions successfully written to " + file)
 })

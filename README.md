@@ -67,10 +67,18 @@ npx squashql-codegen
 ## Configuration
 
 Create an .env to define a couple of environment variables needed to connect to the database and correctly
-execute the script. It also possible
+execute the script. It is also possible
 to [pass the values to the CLI](https://stackoverflow.com/questions/22312671/setting-environment-variables-for-node-to-retrieve)
 
 In each case, a client needs to be created to connect to the DB by setting the env. variable `SQUASHQL_CLIENT`.
+
+To choose where the file should be written, the following env. variable can be set `SQUASHQL_PATH`.
+
+```
+# .env file
+SQUASHQL_CLIENT="bigquery" # mandatory
+SQUASHQL_PATH="/Users/john/tmp" # optional, table.ts will be written in /Users/john/tmp directory
+```
 
 ### BigQuery
 
