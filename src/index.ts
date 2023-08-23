@@ -6,6 +6,7 @@ import * as fs from "fs"
 import {BigQueryClient} from "./bigquery";
 import 'dotenv/config'
 import {TableType} from "./types";
+import {SnowflakeClient} from "./snowflake";
 
 function indent(s: string): string {
     for (let i = 0; i < 4; i++) {
@@ -20,12 +21,22 @@ function capitalizeFirstLetter(s: string): string {
 
 function getTablesInfo(): () => Promise<TableType[]> {
     const bigquery = "bigquery";
-    if (process.env.SQUASHQL_CLIENT === bigquery) {
+    const snowflake = "snowflake";
+    const client = process.env.SQUASHQL_CLIENT;
+    if (client === bigquery) {
         return () => new BigQueryClient().getTablesInfo({
             datasetId: process.env.SQUASHQL_BIGQUERY_DATASET_ID
         })
+    } else if (process.env.SQUASHQL_CLIENT === snowflake) {
+        return () => new SnowflakeClient().getTablesInfo({
+            account: process.env.SQUASHQL_SNOWFLAKE_ACCOUNT,
+            username: process.env.SQUASHQL_SNOWFLAKE_USERNAME,
+            password: process.env.SQUASHQL_SNOWFLAKE_PASSWORD,
+            database: process.env.SQUASHQL_SNOWFLAKE_DATABASE,
+            schema: process.env.SQUASHQL_SNOWFLAKE_SCHEMA
+        })
     } else {
-        throw new Error(`Please define a environment variable SQUASHQL_CLIENT with one of this value: [${bigquery}]`)
+        throw new Error(`Please define a environment variable SQUASHQL_CLIENT (value currently set is ${client}) with one of this value: [${bigquery}, ${snowflake}]`)
     }
 }
 
