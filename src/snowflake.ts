@@ -16,8 +16,6 @@ export class SnowflakeClient implements Client {
                         reject(err)
                     } else {
                         console.log('Successfully executed statement: ' + stmt.getSqlText());
-                        // console.log('Result: ' + JSON.stringify(rows))
-                        // rows?.forEach(r => console.log(JSON.stringify(r)))
                         if (rows) {
                             resolve(rows)
                         }
@@ -40,7 +38,6 @@ export class SnowflakeClient implements Client {
                 tablesObj.push(tableObj)
 
                 const rows1 = await this.statementExecutor(`SHOW COLUMNS IN ${database}.${schema}.${table}`)
-                // const metadataResponse = await tables[i].getMetadata()
                 rows1.forEach(r => fields.push(r["column_name"]))
             }
         }
