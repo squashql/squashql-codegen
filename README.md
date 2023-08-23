@@ -80,7 +80,7 @@ The CLI uses [Application Default Credentials to authenticate](https://cloud.goo
 # .env file
 SQUASHQL_CLIENT="bigquery" # mandatory
 SQUASHQL_BIGQUERY_DATASET_ID="nameofthedataset" # mandatory
-GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json # mandatory if this authentication method is used https://cloud.google.com/docs/authentication/application-default-credentials#GAC
+GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json" # mandatory if this authentication method is used https://cloud.google.com/docs/authentication/application-default-credentials#GAC
 ```
 
 ## Snowflake
