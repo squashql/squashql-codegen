@@ -2,8 +2,15 @@
 
 This tool is inspired by [Kysely Codegen](https://github.com/RobinBlomberg/kysely-codegen)
 
-squashql-codegen generates type definitions that represent tables from your database in ts file named `tables.ts`. The
+squashql-codegen generates type definitions that represent tables and fields from your database in ts file named `tables.ts`. 
+It fetches from a database the list of available tables and fields and creates a typescript file with this information. The
 types can be used with the [TypeScript library](https://www.npmjs.com/package/@squashql/squashql-js) to build SQL-like queries compatible with SquashQL.
+
+## Support
+
+Only the following databases are supported for the time being:
+- [BigQuery](#bigquery)
+- [Snowflake](#snowflake)
 
 Example:
 
@@ -78,8 +85,14 @@ GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json # mandatory if this authentica
 
 ## Snowflake
 
-TODO
+```
+# .env file
+SQUASHQL_CLIENT="snowflake"
 
-## Clickhouse
-
-TODO
+# Snowflake
+SQUASHQL_SNOWFLAKE_ACCOUNT="abc123.north-europe.azure" # mandatory
+SQUASHQL_SNOWFLAKE_USERNAME="john" # mandatory
+SQUASHQL_SNOWFLAKE_PASSWORD="mypassword" # mandatory
+SQUASHQL_SNOWFLAKE_DATABASE="DATABASE_NAME" # mandatory
+SQUASHQL_SNOWFLAKE_SCHEMA="SCHEMA_NAME" # mandatory
+```
