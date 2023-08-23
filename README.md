@@ -61,7 +61,7 @@ npm install -g @squashql/squashql-codegen
 To execute the CLI without installing anything
 
 ```
-npx squashql-codegen
+npx @squashql/squashql-codegen
 ```
 
 ## Configuration
