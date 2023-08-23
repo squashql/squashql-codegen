@@ -90,9 +90,9 @@ GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json # mandatory if this authentica
 SQUASHQL_CLIENT="snowflake"
 
 # Snowflake
-SQUASHQL_SNOWFLAKE_ACCOUNT="abc123.north-europe.azure"  # mandatory
-SQUASHQL_SNOWFLAKE_USERNAME="john"  # mandatory
-SQUASHQL_SNOWFLAKE_PASSWORD="mypassword"  # mandatory
-SQUASHQL_SNOWFLAKE_DATABASE="DATABASE_NAME"  # mandatory
-SQUASHQL_SNOWFLAKE_SCHEMA="SCHEMA_NAME"  # mandatory
+SQUASHQL_SNOWFLAKE_ACCOUNT="abc123.north-europe.azure" # mandatory
+SQUASHQL_SNOWFLAKE_USERNAME="john" # mandatory
+SQUASHQL_SNOWFLAKE_PASSWORD="mypassword" # mandatory
+SQUASHQL_SNOWFLAKE_DATABASE="DATABASE_NAME" # mandatory
+SQUASHQL_SNOWFLAKE_SCHEMA="SCHEMA_NAME" # mandatory
 ```
