@@ -17,18 +17,25 @@ Example:
 ```typescript
 import {TableField} from "@squashql/squashql-js"
 
-class Product {
-    readonly _name: string = "product"
+export interface SquashQLTable {
+    _fields: TableField[]
+    _name: string
+}
+
+class Product implements SquashQLTable {
+    readonly _name = "product"
     readonly productId: TableField = new TableField("product.product_id")
     readonly price: TableField = new TableField("product.price")
     readonly brand: TableField = new TableField("product.brand")
     readonly categoryId: TableField = new TableField("product.category_id")
+    readonly _fields: TableField[] = [this.productId, this.price, this.brand, this.categoryId]
 }
 
-class Category {
-    readonly _name: string = "category"
+class Category implements SquashQLTable {
+    readonly _name = "category"
     readonly categoryId: TableField = new TableField("category.category_id")
     readonly status: TableField = new TableField("category.status")
+    readonly _fields: TableField[] = [this.categoryId, this.status]
 }
 
 const product = new Product()
