@@ -6,6 +6,10 @@ squashql-codegen generates type definitions that represent tables and fields fro
 It fetches from a database the list of available tables and fields and creates a typescript file with this information. The
 types can be used with the [TypeScript library](https://www.npmjs.com/package/@squashql/squashql-js) to build SQL-like queries compatible with SquashQL.
 
+## NPM
+
+[https://www.npmjs.com/package/@squashql/squashql-codegen](https://www.npmjs.com/package/@squashql/squashql-codegen)
+
 ## Support
 
 Only the following databases are supported for the time being:
