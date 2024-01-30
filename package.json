@@ -1,9 +1,12 @@
 {
   "name": "@squashql/squashql-codegen",
-  "version": "1.0.8",
+  "version": "1.0.17",
   "description": "SquashQL CLI to generate type definitions representing tables from your database",
   "main": "./build/index.js",
   "types": "./build/types.d.ts",
+  "files": [
+    "/build"
+  ],
   "bin": {
     "squashql-codegen": "./build/index.js"
   },

@@ -33,3 +33,8 @@ function generateTablesFile() {
 if (require.main === module) {
     generateTablesFile()
 }
+
+// this export should be in index.ts file
+export {
+    codeGenerateTablesFile
+}

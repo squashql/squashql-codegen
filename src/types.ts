@@ -6,7 +6,3 @@ export interface TableType {
 export interface Client {
     getTablesInfo(options?: any): Promise<TableType[]>
 }
-
-export {
-    codeGenerateTablesFile
-} from "./file"
