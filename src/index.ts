@@ -30,4 +30,6 @@ function generateTablesFile() {
     }
 }
 
-generateTablesFile().then(() => console.log("File generated"))
+if (require.main === module) {
+    generateTablesFile()
+}
